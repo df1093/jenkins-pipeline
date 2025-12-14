@@ -16,7 +16,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Pushing Docker image to DockerHub...'
-                withCredentials([usernamePassword(credentialsId: 'dockerhub-credentials', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+                withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
            
          sh 'echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin'
                     sh 'docker tag peninaapp:latest $DOCKER_USER/pavlo_app:latest'
